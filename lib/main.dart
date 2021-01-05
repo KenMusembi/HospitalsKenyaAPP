@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_spots/hospitals/countySelect.dart';
 import 'package:health_spots/hospitals/hopsiptalsList.dart';
 
 import 'package:http/http.dart' as http;
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -69,6 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 'Hospitals Kenya',
                 style: TextStyle(
@@ -79,102 +84,123 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              SizedBox(height: 200),
-              Text('Select county to see Hospitals'),
-              DropdownButton<String>(
-                value: countyDropdown,
-                icon: Icon(Icons.arrow_drop_down),
-                iconSize: 26,
-                elevation: 16,
-                style: TextStyle(color: Colors.black, fontSize: 16.0),
-                underline: Container(
-                  height: 0,
-                  color: Colors.deepPurpleAccent,
+              SizedBox(
+                height: 30,
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  width: 500,
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    color: Colors.blue,
+                    elevation: 20,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: Icon(
+                            Icons.local_hospital,
+                            size: 70,
+                            //   color: Colors.white,
+                          ),
+                          title: Text('Hospitals and Clinics',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          subtitle: Text('browse facilities and services',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CountySelect()),
+                              // );
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                onChanged: (String newValue) {
-                  setState(() {
-                    countyDropdown = newValue;
-                  });
-                },
-                hint: Text('Select county'),
-                items: <String>[
-                  'Nairobi',
-                  'Kirinyaga',
-                  'Bungoma',
-                  'Nyamira',
-                  'Lamu',
-                  'Wajir',
-                  'Nandi',
-                  'Embu',
-                  'Isiolo',
-                  'Taita Taveta',
-                  'Nakuru',
-                  'Migori',
-                  'Narok',
-                  'Marsabit',
-                  'Kilifi',
-                  'Kitui',
-                  'Mombasa',
-                  'Kisumu',
-                  'Kakamega',
-                  'Machakos',
-                  'Mandera',
-                  'Meru',
-                  'Garissa',
-                  'Kisii',
-                  'Siaya',
-                  'Muranga',
-                  'Laikipia',
-                  'Kajiado',
-                  'Kwale',
-                  'Baringo',
-                  'Nyeri',
-                  'Trans Nzioia',
-                  'Vihiga',
-                  'Samburu',
-                  'Tana Rover',
-                  'Elgeyo-Marakwet',
-                  'West Pokot',
-                  'Makueni',
-                  'Kiambu',
-                  'Tharaka Nithi',
-                  'Turkana',
-                  'Busia',
-                  'Bomet',
-                  'Homa Bay',
-                  'Kericho',
-                  'Nyandarua',
-                  'Uasin Gishu'
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Flexible(
+                child: Container(
+                  width: 500,
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    color: Colors.pink,
+                    elevation: 20,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: Icon(
+                            Icons.ac_unit,
+                            size: 70,
+                            //  color: Colors.white,
+                          ),
+                          title: Text('Fedback',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          subtitle: Text('give your feedback on the app',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Flexible(
+                child: Container(
+                  width: 500,
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    color: Colors.amber,
+                    elevation: 15,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: Icon(
+                            Icons.book,
+                            size: 70,
+                            // color: Colors.black,
+                          ),
+                          title: Text('Rate Us ',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          subtitle: Text('rate us on playstore',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            //arguments: {},
-            MaterialPageRoute(
-                builder: (context) => Hospitals(countyDropdown: countyDropdown)),
-          );
-        },
-        tooltip: 'Search',
-        label: Text('Find Hospitals/Clinics'),
-        backgroundColor: Colors.red,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
 Future _incrementCounter() async {
-  var url = 'http://192.168.43.49:8000/api/v1/hospitals';
+  var url = 'https://thestratizen.co.ke/laravel/api/v1/hospitals';
   var response = await http.get(url);
   print('Response status: ${response.statusCode}');
   print('Response body: ${response.body}');
