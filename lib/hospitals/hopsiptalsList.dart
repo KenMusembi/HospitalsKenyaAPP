@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'hospitalDetails.dart';
 import 'dart:convert';
 import 'dart:async';
+import 'hospitalsClass.dart';
 
 void main() {
   runApp(Hospitals());
@@ -37,78 +38,21 @@ class Hospitals extends StatefulWidget {
 }
 
 class _HospitalsState extends State<Hospitals> {
-  String countyDropdown;
-  bool searched = false;
-  Hospitals hospital;
+  Future<List<HospitalClass>> _hospitals;
+  String searchString = "";
 
   final TextEditingController editingController = new TextEditingController();
-  List<Hospitals> autoList = [
-    Hospitals(
-      county: "Nairobi",
-      hospital: 'The Kenyatta National Hospital Level 5 ',
-      hospital_designation: 'Public',
-      picture:
-          'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      services: ['Surgery', 'Optical'],
-      payments: ['Bank', 'Mpesa'],
-      insurances: ['Jubilee', 'Armco'],
-      phone: '0748050434',
-      email: 'kenmusembi21@gmail.com',
-    ),
-    Hospitals(
-      county: "Machakos",
-      hospital: 'Arm Medical',
-      hospital_designation: 'Private',
-      picture:
-          'https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      services: ['Optical'],
-      payments: ['Bank', 'Mpesa'],
-      insurances: ['Jubilee', 'Armco'],
-      phone: '0748050434',
-      email: 'kenmusembi21@gmail.com',
-    ),
-    Hospitals(
-      county: "Embu",
-      hospital: 'Medical Clinic',
-      hospital_designation: 'Public',
-      picture:
-          'https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      services: ['Maternity', 'Dental', 'Covid 19 Testing'],
-      payments: ['Bank', 'Mpesa'],
-      insurances: ['Jubilee', 'Armco'],
-      phone: '0748050434',
-      email: 'kenmusembi21@gmail.com',
-    )
-  ];
-  List<dynamic> filteredList = [];
+
   void initState() {
-    filteredList.addAll(autoList);
+    String countyDropdown = widget.countyDropdown;
+    _hospitals = _incrementCounter(countyDropdown, context);
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    String county = widget.county;
-    String hospital = widget.hospital;
-    String picture = widget.picture;
-    String hospital_designation = widget.hospital_designation;
     String countyDropdown = widget.countyDropdown;
-    var textSpanList;
-    Map<String, dynamic> hh = {
-      "success": true,
-      "message": "Driver Details Found",
-      "driver": {
-        "first_name": "MOHAMED",
-        "last_name": "ARUMII SHEE",
-        "contact_uuid": "79078739-D87C-716C-305352B6D3A810E5",
-        "sex": "Male",
-        "passport_number": "10391254",
-        "driver_national_id": "10391254",
-        "phone_number": "+254713018585",
-        "dob": "2020-08-28",
-        "source": "RECDTS",
-        "nationality": "Kenyan"
-      }
-    };
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -121,7 +65,7 @@ class _HospitalsState extends State<Hospitals> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
+          padding: const EdgeInsets.fromLTRB(15, 40, 15, 70),
           child: Column(
             // Column is also a layout widget. It takes a list of children and
             // arranges them vertically. By default, it sizes itself to fit its
@@ -155,7 +99,7 @@ class _HospitalsState extends State<Hospitals> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Facilities in $county County',
+                        'Facilities in  County',
                         style: TextStyle(
                           color: Colors.black,
                           //letterSpacing: 2.0,
@@ -189,17 +133,7 @@ class _HospitalsState extends State<Hospitals> {
                         cursorColor: Colors.blue,
                         onChanged: (value) {
                           setState(() {
-                            filteredList
-                                .clear(); //for the next time that we search we want the list to be unfilterted
-                            filteredList.addAll(
-                                autoList); //getting list to original state
-
-//removing items that do not contain the entered Text
-                            filteredList.removeWhere(
-                                (i) => i.contains(value.toString()) == false);
-
-//following is just a bool parameter to keep track of lists
-                            searched = !searched;
+                            searchString = value;
                           });
                         },
                         controller: editingController,
@@ -219,55 +153,59 @@ class _HospitalsState extends State<Hospitals> {
                       height: 10,
                     ),
                     Flexible(
-                      child: new ListView.builder(
-                          itemCount: filteredList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            // Whatever sort of things you want to build
-                            // with your Post object at yourPosts[index]:
-                            if (filteredList[index].county == countyDropdown) {
-                              return Card(
-                                child: Column(
-                                  children: [
-                                    ListTile(
-                                      leading: Image.network(
-                                        '${filteredList[index].picture}',
-                                        height: 75,
-                                        width: 100,
-                                        //color: Colors.white,
-                                        fit: BoxFit.contain,
-                                      ),
-                                      enabled: true,
-                                      //  isThreeLine: true,
-                                      onTap: () {
-                                        updateTime(index);
-                                      },
+                      child: new FutureBuilder<List<HospitalClass>>(
+                          future: _hospitals,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              List<HospitalClass> yourPosts = snapshot.data;
+                              return new ListView.builder(
+                                  itemCount: yourPosts.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    // Whatever sort of things you want to build
+                                    // with your Post object at yourPosts[index]:
 
-                                      title: Text(filteredList[index]
-                                          .hospital
-                                          .toString()),
-                                      subtitle: Text(filteredList[index]
-                                          .hospital_designation
-                                          .toString()),
-                                      //trailing: Text(hh[index].toString()),
-                                    ),
+                                    if (yourPosts[index].county ==
+                                        '$countyDropdown') {
+                                      return yourPosts[index]
+                                              .name
+                                              .contains(searchString)
+                                          ? Card(
+                                              child: Column(
+                                                children: [
+                                                  ListTile(
+                                                    enabled: true,
+                                                    //  isThreeLine: true,
+                                                    onTap: () {
+                                                      updateTime(
+                                                          index, yourPosts);
+                                                    },
 
-                                    // ),
-                                    // Text(resources[index].heading)
-                                  ],
-                                ),
-                              );
-                            } else {
-                              return Card(
-                                child: Column(
-                                  children: [
-                                    //Text('No Facilities in this county'),
+                                                    title: Text(yourPosts[index]
+                                                        .name
+                                                        .toString()),
+                                                    subtitle: Text(
+                                                        yourPosts[index]
+                                                            .kephLevel
+                                                            .toString()),
+                                                    //trailing: Text(hh[index].toString()),
+                                                  ),
 
-                                    // ),
-                                    // Text(resources[index].heading)
-                                  ],
-                                ),
-                              );
+                                                  // ),
+                                                  // Text(resources[index].heading)
+                                                ],
+                                              ),
+                                            )
+                                          : Container();
+                                    }
+                                  });
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}");
                             }
+
+                            // By default, show a loading spinner.
+
+                            return CircularProgressIndicator();
                           }),
 
                       //],
@@ -275,20 +213,13 @@ class _HospitalsState extends State<Hospitals> {
                   ],
                 ),
               ),
-              Text('${hh['success']}'),
-              Text('${hh['message']}'),
-              Text('${hh['driver']['last_name']}'),
-              for (var word in hh.keys.toString().split("{ }")) Text(word),
+              //  Text('${_hospitals.toString()}'),
+              // Text('$countyDropdown'),
+              //Text('${hh['success']}'),
+              //Text('${hh['message']}'),
+              //Text('${hh['driver']['last_name']}'),
+              //for (var word in hh.keys.toString().split("{ }")) Text(word),
               // var textSpanList = text.split(" ").map((word) => TextSpan(text: word)).toList();
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: hh.values.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: hh[index],
-                      subtitle: hh[index],
-                    );
-                  }),
 
               /* Flexible(
                 child: new ListView.builder(
@@ -313,35 +244,49 @@ class _HospitalsState extends State<Hospitals> {
           Navigator.pop(context);
         },
         tooltip: 'Search',
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.pink,
         label: Text('Choose Another County'),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  void updateTime(index) async {
-    imageCache.clear();
-    setState(() {
-      //hospital = filteredList[index];
-    });
-    Hospitals instance = filteredList[index];
-    //await instance.getResource();
+  void updateTime(index, yourPosts) async {
+    //imageCache.clear();
+
+    HospitalClass instance = yourPosts[index];
+
     // navigate to home screen and pass any data as well, eg location, flag
-    Navigator.push(
+    await Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => HospitalsDetail(
                 county: instance.county,
-                hospital: instance.hospital,
-                services: instance.services,
-                picture: instance.picture,
-                hospital_designation: instance.hospital_designation,
-                email: instance.email,
-                insurances: instance.insurances,
-                payments: instance.payments,
-                phone: instance.phone,
+                hospital: instance.name,
+                owner: instance.owner,
+                open24hrs: instance.openWholeDay,
+                openholidays: instance.openPublicHolidays,
+                hospital_designation: instance.kephLevel,
+                email: instance.hospitalEmail,
+                openweekends: instance.openWeekends,
+                openlatenight: instance.openLateNight,
+                phone: instance.hospitalPhoneNumber,
+                beds: instance.beds,
+                cots: instance.cots,
               )),
       // );
     );
   }
+}
+
+Future<List<HospitalClass>> _incrementCounter(countyDropdown, context) async {
+  var url =
+      'https://thestratizen.co.ke/laravel/api/v1/hospitals?County=$countyDropdown';
+  var response = await http.get(url);
+  print('Response status: ${response.statusCode}');
+
+  // print('Response body: $responseString');
+
+  //print(await http.read('http://192.168.43.49/api/v1/hospitals'));
+  return List<HospitalClass>.from(
+      json.decode(response.body).map((x) => HospitalClass.fromJson(x)));
 }

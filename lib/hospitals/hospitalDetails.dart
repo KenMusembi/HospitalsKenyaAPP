@@ -1,25 +1,30 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 
 import 'package:health_spots/hospitals/hopsiptalsList.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:health_spots/main.dart';
 
 //import 'indicator.dart';
 
 //import 'dart:html' as html;
 
 class HospitalsDetail extends StatefulWidget {
-  var county;
-  var hospital;
-  var services;
-  var picture;
-  var hospital_designation;
-  var email;
-  var insurances;
-  var payments;
-  var phone;
+  var county,
+      hospital,
+      owner,
+      open24hrs,
+      hospital_designation,
+      email,
+      openweekends,
+      openlatenight,
+      openholidays,
+      phone,
+      beds,
+      cots;
 
   int touchedIndex;
 
@@ -27,13 +32,16 @@ class HospitalsDetail extends StatefulWidget {
     Key key,
     this.county,
     this.hospital,
-    this.services,
+    this.owner,
     this.email,
     this.hospital_designation,
-    this.insurances,
-    this.payments,
+    this.openweekends,
+    this.open24hrs,
+    this.openholidays,
     this.phone,
-    this.picture,
+    this.openlatenight,
+    this.beds,
+    this.cots,
   }) : super(key: key);
 
   @override
@@ -50,12 +58,16 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
   Widget build(BuildContext context) {
     String county = widget.county;
     String hospital = widget.hospital;
-    List services = widget.services;
+    dynamic owner = widget.owner;
     String phone = widget.phone;
     String email = widget.email;
     String hospital_designation = widget.hospital_designation;
-    List insurances = widget.insurances;
-    List payments = widget.payments;
+    dynamic open24hrs = widget.open24hrs;
+    dynamic openlatenight = widget.openlatenight,
+        openweekends = widget.openweekends,
+        openholidays = widget.openholidays,
+        beds = widget.beds,
+        cots = widget.cots;
     bool animate = true;
     int touchedIndex;
 
@@ -96,15 +108,49 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                         ),
                       ),
                     ),
+                    IconButton(
+                      icon: Icon(Icons.more_vert, color: Colors.black),
+                      onPressed: () {
+                        _exitApp(context);
+                      },
+                    ),
                   ],
                 ),
                 SizedBox(height: 10.0),
                 Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    'Contact Information',
+                    '$hospital_designation' + ' Hospital',
                     style: TextStyle(
                       color: Colors.black,
+                      letterSpacing: 2.0,
+                      fontSize: 17.0,
+                      fontFamily: 'Calibri',
+                      //  fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '$owner',
+                    style: TextStyle(
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                      fontSize: 17.0,
+                      fontFamily: 'Calibri',
+                      //  fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'In-Patient Capacity',
+                    style: TextStyle(
+                      color: Colors.blue[600],
                       //letterSpacing: 2.0,
                       fontSize: 17.0,
                       fontFamily: 'Calibri',
@@ -115,7 +161,68 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(226, 0, 0, 0),
                   child: Divider(
-                    color: Colors.black,
+                    color: Colors.blue[600],
+                    thickness: 2,
+                    height: 2,
+                  ),
+                ),
+                Divider(
+                  color: Colors.black,
+                  height: 1,
+                  //thickness: 2,
+                ),
+                SizedBox(height: 15.0),
+                Row(
+                  children: [
+                    Text(
+                      'Beds: ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        letterSpacing: 2.0,
+                        fontSize: 14.0,
+                        fontFamily: 'Calibri',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(beds),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  children: [
+                    Text(
+                      'Cots: ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        letterSpacing: 2.0,
+                        fontSize: 14.0,
+                        fontFamily: 'Calibri',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(cots),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Contact Information',
+                    style: TextStyle(
+                      color: Colors.blue[600],
+                      //letterSpacing: 2.0,
+                      fontSize: 17.0,
+                      fontFamily: 'Calibri',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(226, 0, 0, 0),
+                  child: Divider(
+                    color: Colors.blue[600],
                     thickness: 2,
                     height: 2,
                   ),
@@ -161,9 +268,9 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    'Insurance Companies',
+                    'Open Weekends',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.blue[600],
                       //letterSpacing: 2.0,
                       fontSize: 17.0,
                       fontFamily: 'Calibri',
@@ -174,7 +281,7 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(226, 0, 0, 0),
                   child: Divider(
-                    color: Colors.black,
+                    color: Colors.blue[600],
                     thickness: 2,
                     height: 2,
                   ),
@@ -189,21 +296,21 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    for (var item in insurances)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                            height: 2,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontSize: 14.0,
-                            fontFamily: 'Calibri',
-                            fontWeight: FontWeight.w400,
-                          ),
+                    // for (var item in insurances)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '$openweekends',
+                        style: TextStyle(
+                          height: 2,
+                          color: Colors.black,
+                          letterSpacing: 2.0,
+                          fontSize: 14.0,
+                          fontFamily: 'Calibri',
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
+                    ),
                     //subtitle: Text('Maternity'),
                   ],
                 ),
@@ -213,9 +320,9 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    'Payment Methods',
+                    'Open Night Time',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.blue[600],
                       //letterSpacing: 2.0,
                       fontSize: 17.0,
                       fontFamily: 'Calibri',
@@ -226,7 +333,7 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(226, 0, 0, 0),
                   child: Divider(
-                    color: Colors.black,
+                    color: Colors.blue[600],
                     thickness: 2,
                     height: 2,
                   ),
@@ -241,21 +348,21 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    for (var item in payments)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                            height: 2,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontSize: 14.0,
-                            fontFamily: 'Calibri',
-                            fontWeight: FontWeight.w400,
-                          ),
+                    // for (var item in payments)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '$openlatenight',
+                        style: TextStyle(
+                          height: 2,
+                          color: Colors.black,
+                          letterSpacing: 2.0,
+                          fontSize: 14.0,
+                          fontFamily: 'Calibri',
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
+                    ),
                     //subtitle: Text('Maternity'),
                   ],
                 ),
@@ -263,6 +370,56 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                   height: 10,
                 ),
                 Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Open Holidays',
+                    style: TextStyle(
+                      color: Colors.blue[600],
+                      //letterSpacing: 2.0,
+                      fontSize: 17.0,
+                      fontFamily: 'Calibri',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(226, 0, 0, 0),
+                  child: Divider(
+                    color: Colors.blue[600],
+                    thickness: 2,
+                    height: 2,
+                  ),
+                ),
+                Divider(
+                  color: Colors.black,
+                  height: 1,
+                  //thickness: 2,
+                ),
+                SizedBox(height: 10.0),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    // for (var item in payments)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '$openholidays',
+                        style: TextStyle(
+                          height: 2,
+                          color: Colors.black,
+                          letterSpacing: 2.0,
+                          fontSize: 14.0,
+                          fontFamily: 'Calibri',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    //subtitle: Text('Maternity'),
+                  ],
+                ),
+
+                /*   Align(
                   alignment: Alignment.centerRight,
                   child: Text(
                     'Mortality Rate',
@@ -474,12 +631,13 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 SizedBox(
                   height: 20,
                 ),
+               */
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    'Services ',
+                    'Open 24 Hrs ',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.blue[600],
                       //letterSpacing: 2.0,
                       fontSize: 17.0,
                       fontFamily: 'Calibri',
@@ -490,7 +648,7 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(250, 0, 0, 0),
                   child: Divider(
-                    color: Colors.black,
+                    color: Colors.blue[600],
                     height: 2,
                     thickness: 2,
                   ),
@@ -503,21 +661,21 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    for (var item in services)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                            height: 2,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontSize: 14.0,
-                            fontFamily: 'Calibri',
-                            fontWeight: FontWeight.w400,
-                          ),
+                    //    for (var item in services)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '$open24hrs',
+                        style: TextStyle(
+                          height: 2,
+                          color: Colors.black,
+                          letterSpacing: 2.0,
+                          fontSize: 14.0,
+                          fontFamily: 'Calibri',
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
+                    ),
                     SizedBox(
                       height: 10,
                     )
@@ -549,7 +707,13 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
             //color: Colors.white,
             //elevation: 2.0,
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                //arguments: {},
+                MaterialPageRoute(builder: (context) => MyApp()),
+                // (Route<dynamic> route) => false,
+              );
+              //SystemCha
             },
             icon: Icon(Icons.home, color: Colors.blue[600]),
             label: Text(
@@ -571,23 +735,6 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
             icon: Icon(Icons.assignment, color: Colors.blue[600]),
             label: Text(
               'Hospitals',
-              style: TextStyle(
-                  color: Colors.blue[400],
-                  //letterSpacing: 2.0,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          FlatButton.icon(
-            padding: EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
-            //color: Colors.white,
-            //elevation: 2.0,
-            onPressed: () {
-              _exitApp(context);
-            },
-            icon: Icon(Icons.exit_to_app, color: Colors.blue[600]),
-            label: Text(
-              'Exit',
               style: TextStyle(
                   color: Colors.blue[400],
                   //letterSpacing: 2.0,
@@ -895,26 +1042,21 @@ Future<bool> _exitApp(BuildContext context) {
   return showDialog(
         context: context,
         child: AlertDialog(
-          title: Text('Logout from Jitenge.'),
-          content: Text('Are you sure you want to log out?'),
+          title: Text(' Exit'),
+          content: Text('Are you sure you want to exit?'),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
               side: BorderSide(color: Colors.white)),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
-                Navigator.of(context).pop(false);
+                Navigator.pop(context);
               },
               child: Text('No'),
             ),
             FlatButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  //arguments: {},
-                  MaterialPageRoute(builder: (context) => Hospitals()),
-                  (Route<dynamic> route) => false,
-                );
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                 //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
               },
               child: Text('Yes'),
