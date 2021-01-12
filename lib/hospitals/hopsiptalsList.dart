@@ -99,7 +99,7 @@ class _HospitalsState extends State<Hospitals> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Facilities in  County',
+                        'Facilities in $countyDropdown County',
                         style: TextStyle(
                           color: Colors.black,
                           //letterSpacing: 2.0,

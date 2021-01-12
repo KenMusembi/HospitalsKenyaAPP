@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_spots/hospitals/countySelect.dart';
-import 'package:health_spots/hospitals/hopsiptalsList.dart';
-
+import 'package:health_spots/hospitals/covidData.dart';
+import 'package:health_spots/hospitals/feedback.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -85,18 +85,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Browse hospitals under your county.',
+                style: TextStyle(
+                  color: Colors.black,
+                  letterSpacing: 2.5,
+                  fontSize: 14.0,
+                  // fontFamily: 'Calibri',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              SizedBox(
                 height: 30,
               ),
               Flexible(
                 flex: 1,
                 child: Container(
                   width: 500,
-                  height: 120,
+                  // height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.blue,
+                    color: Colors.greenAccent,
                     elevation: 20,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -105,12 +118,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           leading: Icon(
                             Icons.local_hospital,
                             size: 70,
-                            //   color: Colors.white,
+                            //color: Colors.white,
                           ),
                           title: Text('Hospitals and Clinics',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          subtitle: Text('browse facilities and services',
-                              style: TextStyle(color: Colors.white, height: 2)),
+                              style: TextStyle(color: Colors.black, height: 2)),
+                          subtitle: Text('browse facilities and services \n \n',
+                              style: TextStyle(color: Colors.black, height: 2)),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -131,27 +144,34 @@ class _MyHomePageState extends State<MyHomePage> {
               Flexible(
                 child: Container(
                   width: 500,
-                  height: 120,
+                  //height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.pink,
-                    elevation: 20,
+                    color: Colors.blueAccent,
+                    elevation: 15,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         new ListTile(
                           leading: Icon(
-                            Icons.ac_unit,
+                            Icons.dashboard,
                             size: 70,
-                            //  color: Colors.white,
+                            // color: Colors.black,
                           ),
-                          title: Text('Fedback',
+                          title: Text('Covid 19 Data ',
                               style: TextStyle(color: Colors.white, height: 2)),
-                          subtitle: Text('give your feedback on the app',
+                          subtitle: Text('View Covid 19 Cases \n \n',
                               style: TextStyle(color: Colors.white, height: 2)),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CovidHome()),
+                              // );
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -164,25 +184,65 @@ class _MyHomePageState extends State<MyHomePage> {
               Flexible(
                 child: Container(
                   width: 500,
-                  height: 120,
+                  // height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.amber,
+                    color: Colors.red,
+                    elevation: 20,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: Icon(
+                            Icons.note,
+                            size: 70,
+                            //  color: Colors.white,
+                          ),
+                          title: Text('Fedback',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          subtitle: Text('give your feedback on the app \n \n',
+                              style: TextStyle(color: Colors.white, height: 2)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FeedBack()),
+                              // );
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Flexible(
+                child: Container(
+                  width: 500,
+                  //  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    color: Colors.deepOrange[300],
                     elevation: 15,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         new ListTile(
                           leading: Icon(
-                            Icons.book,
+                            Icons.star,
                             size: 70,
                             // color: Colors.black,
                           ),
                           title: Text('Rate Us ',
                               style: TextStyle(color: Colors.white, height: 2)),
-                          subtitle: Text('rate us on playstore',
+                          subtitle: Text('rate us on playstore \n \n',
                               style: TextStyle(color: Colors.white, height: 2)),
                           onTap: () {},
                         ),
