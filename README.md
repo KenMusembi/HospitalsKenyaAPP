@@ -27,7 +27,7 @@ flutter run
 
 Hospitals Details Page                 |    Covid Data Page        
 :-------------------------:|:-------------------------:
-![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/HospitalDetails.jpg)![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/CovidData.jpg)
+![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/HospitalDetails.jpg)|![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/CovidData.jpg)
 
 
 ## Contributing
