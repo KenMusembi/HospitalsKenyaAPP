@@ -21,9 +21,13 @@ flutter run
 
 ## Android Screenshots
 
-  HomePage                 |    Detail Page        
+  HomePage                 |    Hospitals Page        
 :-------------------------:|:-------------------------:
-![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/Home.jpg)|![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/Hospitals.jpg)![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/HospitalDetails.jpg)![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/CovidData.jpg)
+![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/Home.jpg)|![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/Hospitals.jpg)
+
+Hospitals Details Page                 |    Covid Data Page        
+:-------------------------:|:-------------------------:
+![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/HospitalDetails.jpg)![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/CovidData.jpg)
 
 
 ## Contributing
