@@ -15,16 +15,15 @@ flutter run
 ```
 
 ## Download App ![GitHub All Releases](https://img.shields.io/github/downloads/KenMusembi/HospitalsKenyaAPP/total?color=green)
-<a href="https://github.com/KenMusembi/HospitalsKenyaAPP/screenshots/hospitalskenya.apk">
+<a href="https://github.com/KenMusembi/HospitalsKenyaAPP/raw/main/screenshots/hospitalskenya.apk">
 <img src="https://playerzon.com/asset/download.png" width="200"></img>
-</a>
-<img src="https://github.com/KenMusembi/HospitalsKenyaAPP/screenshots/Home.jpg?raw=true"  /> 
+</a> 
 
 ## Android Screenshots
 
   HomePage                 |    Detail Page        
 :-------------------------:|:-------------------------:
-![](https://github.com/KenMusmebi/HospitalsKenyaApp/screenshots/Home.jpg?raw=true)|![](https://github.com/KenMusembi/HospitalsKenyaApp/screenshots/Hospitals.jpg?raw=true)
+![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/Home.jpg)|![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/Hospitals.jpg)![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/HospitalDetails.jpg)![](https://github.com/KenMusembi/HospitalsKenyaAPP/blob/main/screenshots/CovidData.jpg)
 
 
 ## Contributing
