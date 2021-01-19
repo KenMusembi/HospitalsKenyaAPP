@@ -14,6 +14,9 @@ class CovidData {
     var url = 'https://corona.lmao.ninja/v2/countries/$query';
     Response response = await get(url);
     Map data = jsonDecode(response.body);
+    print(response);
+    print('object');
+    print(data);
 
     country = data['country'];
     flagURL = data['countryInfo']['flag'];
