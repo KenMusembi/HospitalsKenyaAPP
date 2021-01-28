@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -259,6 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//future function to return all the hospitals
 Future _incrementCounter() async {
   var url = 'https://thestratizen.co.ke/laravel/api/v1/hospitals';
   var response = await http.get(url);

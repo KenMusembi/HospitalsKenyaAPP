@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
-
 import 'hospitalDetails.dart';
 import 'dart:convert';
 import 'dart:async';
@@ -112,7 +110,6 @@ class _HospitalsState extends State<Hospitals> {
                   ),
                 ],
               ),
-
               SizedBox(height: 10),
               Expanded(
                 child: Column(
@@ -207,34 +204,10 @@ class _HospitalsState extends State<Hospitals> {
 
                             return CircularProgressIndicator();
                           }),
-
-                      //],
                     ),
                   ],
                 ),
               ),
-              //  Text('${_hospitals.toString()}'),
-              // Text('$countyDropdown'),
-              //Text('${hh['success']}'),
-              //Text('${hh['message']}'),
-              //Text('${hh['driver']['last_name']}'),
-              //for (var word in hh.keys.toString().split("{ }")) Text(word),
-              // var textSpanList = text.split(" ").map((word) => TextSpan(text: word)).toList();
-
-              /* Flexible(
-                child: new ListView.builder(
-                    itemCount: autoList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      // Whatever sort of things you want to build
-                      // with your Post object at yourPosts[index]:
-                      return ListTile(
-                          title: Text(autoList[index]),
-                          subtitle: Text(autoList[index]),
-                          onTap: () => {});
-                    }),
-              ),
-              */
-              //],
             ],
           ),
         ),
@@ -278,6 +251,7 @@ class _HospitalsState extends State<Hospitals> {
   }
 }
 
+//future method to fetch hospitals according to country selected
 Future<List<HospitalClass>> _incrementCounter(countyDropdown, context) async {
   var url =
       'https://thestratizen.co.ke/laravel/api/v1/hospitals?County=$countyDropdown';

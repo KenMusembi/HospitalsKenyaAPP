@@ -1,17 +1,12 @@
-import 'dart:convert';
-//import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:health_spots/hospitals/hopsiptalsList.dart';
-
-import 'package:http/http.dart' as http;
-
+import 'package:health_spots/hospitals/hospitalsList.dart';
 import 'hospitalsClass.dart';
 
 void main() {
   runApp(CountySelect());
 }
 
+//Clippers to style the County Select page
 class BlueTopClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -108,6 +103,7 @@ class CountySelectDropdown extends StatefulWidget {
 
 class _CountySelectDropdownState extends State<CountySelectDropdown> {
   String countyDropdown;
+  //future object that will hold the data in the for of a List
   Future<List<HospitalClass>> _hospitals;
   @override
   void initState() {
@@ -309,7 +305,7 @@ class _CountySelectDropdownState extends State<CountySelectDropdown> {
                 builder: (context) => Hospitals(countyDropdown: countyDropdown),
               ));
         },
-        tooltip: 'Search',
+        tooltip: 'Click to Find',
         label: Text(
           'Find Hospitals/Clinics',
           style: TextStyle(color: Colors.black),

@@ -70,7 +70,7 @@ class _FeedbackState extends State<FeedBack> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    'Email:',
+                    'Email',
                     style: TextStyle(
                       color: Colors.blue[600],
                       //letterSpacing: 2.0,
