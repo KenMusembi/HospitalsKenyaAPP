@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:health_spots/hospitals/countriesClass.dart';
-
-import 'package:http/http.dart' as http;
-
-import 'hospitalDetails.dart';
-import 'dart:convert';
-import 'dart:async';
 import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -13,6 +7,7 @@ void main() => runApp(MaterialApp(
       home: CovidHome(),
     ));
 
+//Class to select color
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
@@ -50,6 +45,7 @@ class _CovidHomeState extends State<CovidHome> {
   @override
   void initState() {
     super.initState();
+    //initiate default country as Kenya
     setData('Kenya');
   }
 
@@ -357,6 +353,7 @@ class _CovidHomeState extends State<CovidHome> {
     );
   }
 
+//widget for drawing histogram
   LineChartData mainDataNew() {
     return LineChartData(
       lineTouchData: LineTouchData(

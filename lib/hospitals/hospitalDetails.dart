@@ -1,10 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
-
-import 'package:health_spots/hospitals/hopsiptalsList.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:health_spots/main.dart';
 

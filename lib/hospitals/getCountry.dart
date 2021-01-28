@@ -1,12 +1,5 @@
-import 'dart:convert';
-//import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:health_spots/hospitals/covidData.dart';
-import 'package:health_spots/hospitals/hopsiptalsList.dart';
-
-import 'package:http/http.dart' as http;
-
 import 'hospitalsClass.dart';
 
 void main() {

@@ -1,6 +1,8 @@
 import 'package:http/http.dart';
 import 'dart:convert';
 
+//class for fetching Covid Data
+
 class CovidData {
   String country;
   String flagURL;
@@ -9,7 +11,7 @@ class CovidData {
   int recovered;
   Map histData;
 
-  // fetch th data
+  // fetching the data
   void getData(String query) async {
     var url = 'https://corona.lmao.ninja/v2/countries/$query';
     Response response = await get(url);
