@@ -59,58 +59,29 @@ class _HospitalsState extends State<Hospitals> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Facilities in $countyDropdown County',
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 40, 15, 70),
+          padding: const EdgeInsets.fromLTRB(15, 10, 15, 70),
           child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Invoke "debug painting" (press "p" in the console, choose the
-            // "Toggle Debug Paint" action from the Flutter Inspector in Android
-            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-            // to see the wireframe for each widget.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Facilities in $countyDropdown County',
-                        style: TextStyle(
-                          color: Colors.black,
-                          //letterSpacing: 2.0,
-                          fontSize: 20.0,
-                          fontFamily: 'Calibri',
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
               Expanded(
                 child: Column(
                   children: [
@@ -138,7 +109,8 @@ class _HospitalsState extends State<Hospitals> {
                           //fillColor: Colors.grey,
                           //filled: true,
                           border: InputBorder.none,
-                          labelText: "Search for a Hospital or Clinic here",
+                          labelText:
+                              "Search for a facility in $countyDropdown here",
                           prefixIcon: Icon(
                             Icons.search,
                             // color: Colors.grey,
@@ -217,7 +189,7 @@ class _HospitalsState extends State<Hospitals> {
           Navigator.pop(context);
         },
         tooltip: 'Search',
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.blue,
         label: Text('Choose Another County'),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

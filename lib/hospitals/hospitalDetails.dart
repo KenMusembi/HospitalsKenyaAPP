@@ -73,46 +73,25 @@ class _HospitalsDetailState extends State<HospitalsDetail> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          hospital,
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Stack(alignment: Alignment.center, children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    Flexible(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          hospital,
-                          style: TextStyle(
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontSize: 18.0,
-                            fontFamily: 'Calibri',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.more_vert, color: Colors.black),
-                      onPressed: () {
-                        _exitApp(context);
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -1036,29 +1015,30 @@ List<BarChartGroupData> getData() {
 
 Future<bool> _exitApp(BuildContext context) {
   return showDialog(
-        context: context,
-        child: AlertDialog(
-          title: Text(' Exit'),
-          content: Text('Are you sure you want to exit?'),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              side: BorderSide(color: Colors.white)),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('No'),
-            ),
-            FlatButton(
-              onPressed: () {
-                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-              },
-              child: Text('Yes'),
-            ),
-          ],
-        ),
-      ) ??
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(' Exit'),
+              content: Text('Are you sure you want to exit?'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                  side: BorderSide(color: Colors.white)),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('No'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                    //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                  },
+                  child: Text('Yes'),
+                ),
+              ],
+            );
+          }) ??
       false;
 }

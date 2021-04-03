@@ -265,29 +265,30 @@ class Indicator extends StatelessWidget {
 
 Future<bool> _exitApp(BuildContext context) {
   return showDialog(
-        context: context,
-        child: AlertDialog(
-          title: Text(' Exit'),
-          content: Text('Are you sure you want to exit?'),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              side: BorderSide(color: Colors.white)),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('No'),
-            ),
-            FlatButton(
-              onPressed: () {
-                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-              },
-              child: Text('Yes'),
-            ),
-          ],
-        ),
-      ) ??
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(' Exit'),
+              content: Text('Are you sure you want to exit?'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                  side: BorderSide(color: Colors.white)),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('No'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                    //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                  },
+                  child: Text('Yes'),
+                ),
+              ],
+            );
+          }) ??
       false;
 }
