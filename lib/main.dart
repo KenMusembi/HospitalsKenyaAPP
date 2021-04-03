@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_spots/hospitals/countySelect.dart';
 import 'package:health_spots/hospitals/covidData.dart';
 import 'package:health_spots/hospitals/feedback.dart';
+import 'package:health_spots/hospitals/hospitalsList.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -41,6 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String whiteColor = "#F9F9F9";
+    String greenColor = "#00e04f";
+    List<Color> _colors = [HexColor('#9DD1F9'), HexColor('#9DD1F9')];
+    List<double> _stops = [0.0, 1.0];
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -49,44 +54,18 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Hospitals Kenya"),
+      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Invoke "debug painting" (press "p" in the console, choose the
-            // "Toggle Debug Paint" action from the Flutter Inspector in Android
-            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-            // to see the wireframe for each widget.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Hospitals Kenya',
-                style: TextStyle(
-                  color: Colors.black,
-                  letterSpacing: 2.0,
-                  fontSize: 20.0,
-                  fontFamily: 'Calibri',
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
               Text(
                 'Browse hospitals under your county.',
                 style: TextStyle(
@@ -98,43 +77,45 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               Flexible(
                 flex: 1,
                 child: Container(
-                  width: 500,
-                  // height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.greenAccent,
-                    elevation: 20,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        new ListTile(
-                          leading: Icon(
-                            Icons.local_hospital,
-                            size: 70,
-                            //color: Colors.white,
-                          ),
-                          title: Text('Hospitals and Clinics',
-                              style: TextStyle(color: Colors.black, height: 2)),
-                          subtitle: Text('browse facilities and services \n \n',
-                              style: TextStyle(color: Colors.black, height: 2)),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CountySelect()),
-                              // );
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                  width: 400,
+                  height: 130,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: _colors,
+                          stops: _stops),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.circular(20.0),
+                      )),
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      new ListTile(
+                        leading: Image.network(
+                            'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aG9zcGl0YWx8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'),
+                        title: Text('Hospitals and Clinics',
+                            style: TextStyle(color: Colors.black, height: 2)),
+                        subtitle: Text('browse facilities and services \n \n',
+                            style: TextStyle(color: Colors.black, height: 2)),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CountySelect()),
+                            // );
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
