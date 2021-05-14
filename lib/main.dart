@@ -58,183 +58,200 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: Text("Hospitals Kenya"),
       ),
-      body: Center(
+      body: Stack(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Browse hospitals under your county.',
-                style: TextStyle(
-                  color: Colors.black,
-                  letterSpacing: 2.5,
-                  fontSize: 14.0,
-                  // fontFamily: 'Calibri',
-                  fontWeight: FontWeight.w400,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Browse hospitals under your county.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    letterSpacing: 2.5,
+                    fontSize: 14.0,
+                    // fontFamily: 'Calibri',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: 400,
-                  height: 130,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: _colors,
-                          stops: _stops),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0),
-                      )),
-                  child: Column(
-                    // mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      new ListTile(
-                        leading: Image.network(
-                            'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aG9zcGl0YWx8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'),
-                        title: Text('Hospitals and Clinics',
-                            style: TextStyle(color: Colors.black, height: 2)),
-                        subtitle: Text('browse facilities and services \n \n',
-                            style: TextStyle(color: Colors.black, height: 2)),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CountySelect()),
-                            // );
-                          );
-                        },
+                SizedBox(
+                  height: 10,
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    width: 400,
+                    height: 130,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: _colors,
+                            stops: _stops),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0),
+                          bottomLeft: Radius.circular(10.0),
+                          bottomRight: Radius.circular(10.0),
+                        )),
+                    child: Column(
+                      // mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: Icon(
+                            Icons.local_hospital_outlined,
+                            size: 70,
+                          ),
+                          title: Text('Hospitals and Clinics',
+                              style: TextStyle(color: Colors.black, height: 2)),
+                          subtitle: Text('browse facilities and services \n \n',
+                              style: TextStyle(color: Colors.black, height: 2)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CountySelect()),
+                              // );
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Flexible(
+                  child: Container(
+                    width: 500,
+                    //height: 120,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Flexible(
-                child: Container(
-                  width: 500,
-                  //height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.blueAccent,
-                    elevation: 15,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        new ListTile(
-                          leading: Icon(
-                            Icons.dashboard,
-                            size: 70,
-                            // color: Colors.black,
+                      color: Colors.lightBlue[400],
+                      elevation: 15,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          new ListTile(
+                            leading: Icon(
+                              Icons.dashboard,
+                              size: 70,
+                              // color: Colors.black,
+                            ),
+                            title: Text('Covid 19 Data ',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            subtitle: Text('View Covid 19 Cases \n \n',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CovidHome()),
+                                // );
+                              );
+                            },
                           ),
-                          title: Text('Covid 19 Data ',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          subtitle: Text('View Covid 19 Cases \n \n',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CovidHome()),
-                              // );
-                            );
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Flexible(
-                child: Container(
-                  width: 500,
-                  // height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.red,
-                    elevation: 20,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        new ListTile(
-                          leading: Icon(
-                            Icons.note,
-                            size: 70,
-                            //  color: Colors.white,
+                SizedBox(
+                  height: 20,
+                ),
+                Flexible(
+                  child: Container(
+                    width: 500,
+                    // height: 120,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.blue,
+                      elevation: 20,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          new ListTile(
+                            leading: Icon(
+                              Icons.note,
+                              size: 70,
+                              //  color: Colors.white,
+                            ),
+                            title: Text('Fedback',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            subtitle: Text(
+                                'give your feedback on the app \n \n',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FeedBack()),
+                                // );
+                              );
+                            },
                           ),
-                          title: Text('Fedback',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          subtitle: Text('give your feedback on the app \n \n',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FeedBack()),
-                              // );
-                            );
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Flexible(
-                child: Container(
-                  width: 500,
-                  //  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.deepOrange[300],
-                    elevation: 15,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        new ListTile(
-                          leading: Icon(
-                            Icons.star,
-                            size: 70,
-                            // color: Colors.black,
+                SizedBox(
+                  height: 20,
+                ),
+                Flexible(
+                  child: Container(
+                    width: 500,
+                    //  height: 120,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.blueAccent,
+                      elevation: 15,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          new ListTile(
+                            leading: Icon(
+                              Icons.star,
+                              size: 70,
+                              // color: Colors.black,
+                            ),
+                            title: Text('Rate Us ',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            subtitle: Text('rate us on playstore \n \n',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            onTap: () {
+                              final snackBar = SnackBar(
+                                  content: Text('Feature Coming Soon!'));
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
                           ),
-                          title: Text('Rate Us ',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          subtitle: Text('rate us on playstore \n \n',
-                              style: TextStyle(color: Colors.white, height: 2)),
-                          onTap: () {},
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

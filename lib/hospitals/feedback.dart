@@ -27,46 +27,25 @@ class _FeedbackState extends State<FeedBack> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Feedback'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Stack(alignment: Alignment.center, children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    Flexible(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Feedback',
-                          style: TextStyle(
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontSize: 18.0,
-                            fontFamily: 'Calibri',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.more_vert, color: Colors.black),
-                      onPressed: () {
-                        _exitApp(context);
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0),
+                Text(
+                    'Reach out to us via the below channels for any comments or suggestions.'),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
@@ -152,7 +131,7 @@ class _FeedbackState extends State<FeedBack> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '0748050434',
+                        '+254 748 050 434',
                         style: TextStyle(
                           height: 2,
                           color: Colors.black,
