@@ -28,6 +28,7 @@ class MapCountySelect extends StatefulWidget{
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+  //added map functionality
   @override
   Widget build(BuildContext context) {
     return Scaffold(
