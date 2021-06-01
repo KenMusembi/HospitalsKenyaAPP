@@ -3,6 +3,7 @@ import 'package:health_spots/hospitals/countySelect.dart';
 import 'package:health_spots/hospitals/covidData.dart';
 import 'package:health_spots/hospitals/feedback.dart';
 import 'package:health_spots/hospitals/hospitalsList.dart';
+import 'package:health_spots/hospitals/map_or_county.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -102,18 +103,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: <Widget>[
                         new ListTile(
                           leading: Icon(
-                            Icons.local_hospital_outlined,
+                            Icons.place,
                             size: 70,
                           ),
-                          title: Text('Hospitals and Clinics',
+                          title: Text('Map of Hospitals near you',
                               style: TextStyle(color: Colors.black, height: 2)),
-                          subtitle: Text('browse facilities and services \n \n',
+                          subtitle: Text('See map of hospitals near you \n \n',
                               style: TextStyle(color: Colors.black, height: 2)),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CountySelect()),
+                                  builder: (context) => MapCountySelection()),
                               // );
                             );
                           },
@@ -164,7 +165,50 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+               
                 SizedBox(
+                  height: 20,
+                ),
+                Flexible(
+                  child: Container(
+                    width: 500,
+                    //  height: 120,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.blue[400],
+                      elevation: 15,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          new ListTile(
+                            leading: Icon(
+                              Icons.local_hospital,
+                              size: 70,
+                              // color: Colors.black,
+                            ),
+                            title: Text('Hospitals By County',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            subtitle: Text('Browse facilities by county \n \n',
+                                style:
+                                    TextStyle(color: Colors.white, height: 2)),
+                            onTap: () {
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CountySelect()),
+                              // );
+                            );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                 SizedBox(
                   height: 20,
                 ),
                 Flexible(
@@ -190,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 style:
                                     TextStyle(color: Colors.white, height: 2)),
                             subtitle: Text(
-                                'give your feedback on the app \n \n',
+                                'Give your feedback on the app \n \n',
                                 style:
                                     TextStyle(color: Colors.white, height: 2)),
                             onTap: () {
@@ -200,47 +244,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                     builder: (context) => FeedBack()),
                                 // );
                               );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Flexible(
-                  child: Container(
-                    width: 500,
-                    //  height: 120,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      color: Colors.blueAccent,
-                      elevation: 15,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          new ListTile(
-                            leading: Icon(
-                              Icons.star,
-                              size: 70,
-                              // color: Colors.black,
-                            ),
-                            title: Text('Rate Us ',
-                                style:
-                                    TextStyle(color: Colors.white, height: 2)),
-                            subtitle: Text('rate us on playstore \n \n',
-                                style:
-                                    TextStyle(color: Colors.white, height: 2)),
-                            onTap: () {
-                              final snackBar = SnackBar(
-                                  content: Text('Feature Coming Soon!'));
-
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
                             },
                           ),
                         ],
