@@ -82,53 +82,49 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 10,
                 ),
                 Flexible(
-                  flex: 1,
                   child: Container(
-                    width: 400,
-                    height: 130,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: _colors,
-                            stops: _stops),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0),
-                          bottomLeft: Radius.circular(10.0),
-                          bottomRight: Radius.circular(10.0),
-                        )),
-                    child: Column(
-                      // mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        new ListTile(
-                          leading: Icon(
-                            Icons.place,
-                            size: 70,
-                          ),
-                          title: Text('Map of Hospitals near you',
+                    width: MediaQuery.of(context).size.width,
+                    // height: 120,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.blue[200],
+                      elevation: 20,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          new ListTile(
+                            leading: Icon(
+                              Icons.place,
+                              size: 70,
+                              //  color: Colors.white,
+                            ),
+                           title: Text('Map of Hospitals near you',
                               style: TextStyle(color: Colors.black, height: 2)),
                           subtitle: Text('See map of hospitals near you \n \n',
                               style: TextStyle(color: Colors.black, height: 2)),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MapCountySelection()),
-                              // );
-                            );
-                          },
-                        ),
-                      ],
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MapCountySelection()),
+                                // );
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
+               
                 SizedBox(
                   height: 20,
                 ),
                 Flexible(
                   child: Container(
-                    width: 500,
+                    width: MediaQuery.of(context).size.width,
                     //height: 120,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -171,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Flexible(
                   child: Container(
-                    width: 500,
+                    width: MediaQuery.of(context).size.width,
                     //  height: 120,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -213,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Flexible(
                   child: Container(
-                    width: 500,
+                    width: MediaQuery.of(context).size.width,
                     // height: 120,
                     child: Card(
                       shape: RoundedRectangleBorder(

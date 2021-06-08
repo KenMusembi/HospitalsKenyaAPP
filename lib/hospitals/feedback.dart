@@ -19,7 +19,7 @@ class _FeedbackState extends State<FeedBack> {
 
   @override
   Widget build(BuildContext context) {
-    String email, phone;
+    //String email, phone;
 
     //set background
     //String bgImage = '$picture' != null ? '$picture' : 'jitenge.png';

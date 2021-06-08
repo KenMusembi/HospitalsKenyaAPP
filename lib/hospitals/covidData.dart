@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_spots/hospitals/countriesClass.dart';
+import 'package:health_spots/hospitals/covidDataClass.dart';
 import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 
