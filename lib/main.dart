@@ -4,6 +4,7 @@ import 'package:health_spots/hospitals/covidData.dart';
 import 'package:health_spots/hospitals/feedback.dart';
 import 'package:health_spots/hospitals/hospitalsList.dart';
 import 'package:health_spots/hospitals/map_or_county.dart';
+import 'package:health_spots/widgets/app_default.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -55,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       backgroundColor: Colors.white,
+      drawer: AppDrawer(),
       appBar: AppBar(
         centerTitle: true,
         title: Text("Hospitals Kenya"),
