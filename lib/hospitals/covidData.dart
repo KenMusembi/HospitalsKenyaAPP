@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:health_spots/hospitals/covidDataClass.dart';
+import 'package:health_spots/models/covidDataClass.dart';
 import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 
-void main() => runApp(MaterialApp(
-      home: CovidHome(),
-    ));
+void main() => runApp(CovidHome(),    
+    );
 
 //Class to select color
 class HexColor extends Color {

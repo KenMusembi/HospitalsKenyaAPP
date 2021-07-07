@@ -19,7 +19,7 @@ const LatLng DEST_LOCATION = LatLng(-1.30441216368926, 36.82477711537236);
 class MapCountySelection extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-   return MaterialApp(home: MapCountySelect(title: 'View Map or By Counties'),);
+   return MapCountySelect(title: 'View Map or By Counties');
   }
 }
 
@@ -66,7 +66,7 @@ String googleAPIKey = 'AIzaSyDNAJLCsDoxcyAxNR-nV_J_81Xz6FJQ6Yc';
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Map of Facilities near you.'),
+        title: Text('Map of Facilities near you'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

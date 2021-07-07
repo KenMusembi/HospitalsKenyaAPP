@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_spots/hospitals/covidData.dart';
-import 'hospitalsClass.dart';
+import '../models/hospitalsClass.dart';
 
 void main() {
   runApp(CountrySelect());
@@ -76,9 +76,9 @@ class CountrySelect extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CountySelectDropdown(title: 'Choose Country below.'),
-    );
+    return 
+      CountySelectDropdown(title: 'Choose Country below.')
+    ;
   }
 }
 

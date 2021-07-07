@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_spots/hospitals/hospitalsList.dart';
-import 'hospitalsClass.dart';
+import '../models/hospitalsClass.dart';
 
 void main() {
   runApp(CountySelect());
@@ -77,9 +77,9 @@ class CountySelect extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CountySelectDropdown(title: 'Hospitals in Kenya'),
-    );
+    return 
+       CountySelectDropdown(title: 'Hospitals in Kenya');
+    
   }
 }
 
@@ -111,7 +111,8 @@ class _CountySelectDropdownState extends State<CountySelectDropdown> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            //Navigator.pop(context);
+            Navigator.of(context, rootNavigator: true).maybePop();
           },
         ),
       ),
