@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Browse hospitals under your county.',
+                  'Browse hospitals in your county.',
                   style: TextStyle(
                     color: Colors.black,
                     letterSpacing: 2.5,
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      color: Colors.blue[200],
+                      color: Colors.blue[300],
                       elevation: 20,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -101,9 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               //  color: Colors.white,
                             ),
                            title: Text('Map of Hospitals near you',
-                              style: TextStyle(color: Colors.black, height: 2)),
+                              style: TextStyle(color: Colors.white, height: 2)),
                           subtitle: Text('See map of hospitals near you \n \n',
-                              style: TextStyle(color: Colors.black, height: 2)),
+                              style: TextStyle(color: Colors.white, height: 2)),
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      color: Colors.lightBlue[400],
+                      color: Colors.blue[400],
                       elevation: 15,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -173,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      color: Colors.blue[400],
+                      color: Colors.blue[500],
                       elevation: 15,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -215,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      color: Colors.blue,
+                      color: Colors.blue[600],
                       elevation: 20,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,

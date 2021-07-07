@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'hospitalDetails.dart';
 import 'dart:convert';
 import 'dart:async';
-import 'hospitalsClass.dart';
+import '../models/hospitalsClass.dart';
 
 void main() {
   runApp(Hospitals());

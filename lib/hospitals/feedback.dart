@@ -7,9 +7,8 @@ class FeedBack extends StatefulWidget {
   _FeedbackState createState() => _FeedbackState();
 }
 
-void main() => runApp(MaterialApp(
-      home: FeedBack(),
-    ));
+void main() => runApp(FeedBack(),
+    );
 
 class _FeedbackState extends State<FeedBack> {
   @override
