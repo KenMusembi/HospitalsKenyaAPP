@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_spots/models/covidDataClass.dart';
 import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:health_spots/widgets/app_default.dart';
 
 void main() => runApp(CovidHome(),    
     );
@@ -94,7 +95,17 @@ class _CovidHomeState extends State<CovidHome> {
     List<Color> _colors = [HexColor('#359c9a'), HexColor('#3486b8')];
     List<double> _stops = [0.0, 1.0];
     return Scaffold(
-      //backgroundColor: Colors.blue[100],
+      //backgroundColor: Colors.blue[100],      
+        appBar: AppBar(
+        centerTitle: true,
+        title: Text('Covid Data'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
