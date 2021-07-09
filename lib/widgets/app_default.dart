@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:health_spots/hospitals/covidData.dart';
 import 'package:health_spots/hospitals/feedback.dart';
-import 'package:health_spots/hospitals/getCountry.dart';
 import 'package:health_spots/main.dart';
-import 'package:sweet_alert_dialogs/sweet_alert_dialogs.dart';
 import 'package:health_spots/hospitals/map_or_county.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -90,15 +89,15 @@ class AppDrawer extends StatelessWidget {
                         ),
                         ListButtons(
                          onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FeedBack()),
-                                // );
-                              );
+                             
+                              launch(
+                                  'https://play.google.com/store/apps/details?id=com.nextken.health_spots',
+                                  forceSafariVC: false,
+                                  forceWebView: false,                                 
+                                );
                             },
-                          icon: Icons.phone_in_talk,
-                          text: 'Feedback',
+                          icon: Icons.rate_review,
+                          text: 'Rate Us',
                         ),
                       ],
                     ),
@@ -111,12 +110,28 @@ class AppDrawer extends StatelessWidget {
                           color: Colors.grey.shade200,
                         ),
                         ListButtons(
-                          onTap: () {},
+                          onTap: () {
+                            
+                           launch(
+                                  'https://www.termsfeed.com/live/e678dbb4-020f-4c9e-9b98-9d4674c23fa5',
+                                  forceSafariVC: false,
+                                  forceWebView: false,
+                                  headers: <String, String>{'my_header_key': 'my_header_value'},
+                                );
+
+                          },
                           icon: Icons.read_more,
                           text: 'Privacy Policy',
                         ),
                         ListButtons(
-                          onTap: () {},
+                          onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FeedBack()),
+                                // );
+                              );
+                            },
                           icon: Icons.help_outline,
                           text: 'Help and Feedback',
                         ),

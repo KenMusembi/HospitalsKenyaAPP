@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 
+import 'package:health_spots/widgets/app_default.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class FeedBack extends StatefulWidget {
   @override
   _FeedbackState createState() => _FeedbackState();
@@ -72,28 +75,19 @@ class _FeedbackState extends State<FeedBack> {
                   //thickness: 2,
                 ),
                 SizedBox(height: 10.0),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    // for (var item in payments)
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'kenmusembi21@gmail.com',
-                        style: TextStyle(
-                          height: 2,
-                          color: Colors.black,
-                          letterSpacing: 2.0,
-                          fontSize: 14.0,
-                          fontFamily: 'Calibri',
-                          fontWeight: FontWeight.w400,
+                ListButtons(
+                         onTap: () {
+                             
+                              launch(
+                                  'mailto:kenmusembi21@gmail.com?subject=Feedback',
+                                  forceSafariVC: false,
+                                  forceWebView: false,                                 
+                                );
+                            },
+                          icon: Icons.email,
+                          text: 'kenmusembi21@gmail.com'
                         ),
-                      ),
-                    ),
-                    //subtitle: Text('Maternity'),
-                  ],
-                ),
+                  
                 SizedBox(height: 20),
                 Align(
                   alignment: Alignment.centerRight,
@@ -128,18 +122,18 @@ class _FeedbackState extends State<FeedBack> {
                   children: <Widget>[
                     // for (var item in payments)
                     Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '+254 748 050 434',
-                        style: TextStyle(
-                          height: 2,
-                          color: Colors.black,
-                          letterSpacing: 2.0,
-                          fontSize: 14.0,
-                          fontFamily: 'Calibri',
-                          fontWeight: FontWeight.w400,
+                      alignment: Alignment.topLeft,
+                      child: ListButtons(                        
+                         onTap: () {                             
+                              launch(
+                                  'tel:+254748050434',
+                                  forceSafariVC: false,
+                                  forceWebView: false,                                 
+                                );
+                            },
+                          icon: Icons.call,
+                          text: '0748050434'
                         ),
-                      ),
                     ),
                     //subtitle: Text('Maternity'),
                   ],

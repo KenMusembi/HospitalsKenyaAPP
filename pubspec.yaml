@@ -35,6 +35,8 @@ dependencies:
   flutter_polyline_points: ^0.1.0
   #sweet alerts dialog for notifications
   sweet_alert_dialogs: "^0.1.0"
+  #url launcher for launching urls, phone and sms actions
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
