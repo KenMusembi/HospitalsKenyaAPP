@@ -30,6 +30,7 @@ class AppDrawer extends StatelessWidget {
                       children: <Widget>[
                         DrawerHeader(
                           decoration: BoxDecoration(
+                            color: Colors.blue[50],
                               border: Border(
                                   bottom: Divider.createBorderSide(context,
                                       color: Colors.transparent, width: 0))),
@@ -187,48 +188,3 @@ class ListButtons extends StatelessWidget {
   }
 }
 
-class FormItem extends StatelessWidget {
-  final String hintText;
-  final String helperText;
-  final Function onChanged;
-  final bool isNumber;
-  final IconData icon;
-  final controller;
-
-  FormItem(
-      {this.hintText,
-      this.helperText,
-      this.onChanged,
-      this.icon,
-      this.isNumber: false,
-      this.controller});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(6),
-      margin: EdgeInsets.all(5),
-      child: TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-                  color: Color(0xffaf5676), style: BorderStyle.solid)),
-          hintText: hintText,
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide:
-                  BorderSide(color: Colors.indigo, style: BorderStyle.solid)),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-                  color: Color(0xffaf5676), style: BorderStyle.solid)),
-        ),
-        onChanged: (String value) {
-          onChanged(value);
-        },
-        controller: controller,
-        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
-      ),
-    );
-  }
-}
